@@ -1,0 +1,183 @@
+<!DOCTYPE html><html>
+<head>
+	<title>Edderiofer&rsquo;s Heyawake 21</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body><center>
+
+	<table style="position:absolute; left:10px; top:10px; background-color:black;">
+		<td>
+			<a href="#popup1"><img title="Information" src="../jdgmiles.github.io/questionmark.png" style="width:60px; height:60px"></a><br>
+			<a href="https://twitter.com/jimdgmiles" target=blank_><img title="James Miles on Twitter" src="../jdgmiles.github.io/twitter.png" style="width:60px; height:60px"></a><br>
+			<a href="http://jdgmiles.github.io/" target="_blank"><img title="Projects Page" src="../jdgmiles.github.io/jdgm.png" style="width:60px; height:60px"></a>
+		</td>
+	</table>
+
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<br>
+			<a class="close" style="right: 30px;" href="#">&times;</a><br><br>
+			<div style="font-family:Georgia; color:white; text-align:center; text-decoration:underline; font-size:250%">Edderiofer&rsquo;s Heyawake 21</div>
+			<span style="font-family:Georgia; font-size:170%; color:white; text-align:justify;"><br>This is a page to experiment with finding a solution to Edderiofer&rsquo;s <a href="http://edderiofer.blogspot.co.uk/2015/04/puzzle-1.html" target="_blank">&ldquo;Puzzle #1&rdquo;</a>.<br><br>It is a <a href="https://en.wikipedia.org/wiki/Heyawake" target="_blank">Heyawake</a> puzzle.<br><br>Click a cell to fill it black.<br>Click it again to fill it white.<br>Click &ldquo;Rules&rdquo; to learn how to play.<br><br>When you think you have the solution click &ldquo;Check&rdquo; to find out if you are right.<br><br></span>
+		</div>
+	</div>
+
+	<div id="popup2" class="overlay">
+		<div class="popup">
+			<br>
+			<a class="close" style="right: 30px;" href="#">&times;</a>
+			<div style="font-family:Georgia; color:white; text-align:center; text-decoration:underline; font-size:250%">Rules</div>
+			<div style="font-family:Georgia; font-size:150%; color:white; text-align:left; vertical-align:top;"><br><table><tr><td style="vertical-align:top">1.&nbsp;</td><td>Two black cells must not touch side-by-side or top-and-bottom (but diagonally is OK).</td></tr><tr><td style="vertical-align:top"><br>2.&nbsp;</td><td><br>You must be able to reach any white cell from any other white cell.</td></tr><tr><td style="vertical-align:top"><br>3.&nbsp;</td><td><br>The numbers indicate exactly how many black cells there must be in that particular &ldquo;room&rdquo;.</td></tr><tr><td style="vertical-align:top"><br>4.&nbsp;</td><td><br>A room which has no number may contain any amount of black cells, or none.</td></tr><tr><td style="vertical-align:top"><br>5.&nbsp;</td><td><br>A horizontal or vertical line of connected white cells must not cross more than two rooms.</td></tr><tr></table><br><br><i>Click the &ldquo;?&rdquo; in the top left for more information.</i><br><br></div>
+		</div>
+	</div>
+
+	<div id="popup3" class="overlay">
+		<div class="popup">
+			<br>
+			<a class="close" style="right: 30px;" href="#">&times;</a>
+			<div style="font-family:Georgia; font-size:250%; color:white; text-align:center; vertical-align:top;"><br>Well done!<br>That is the correct answer!<br><br></div>
+		</div>
+	</div>
+
+	<div id="popup4" class="overlay">
+		<div class="popup">
+			<br>
+			<a class="close" style="right: 30px;" href="#">&times;</a>
+			<div style="font-family:Georgia; font-size:250%; color:white; text-align:center; vertical-align:top;"><br>Sorry, that&rsquo;s not correct.<br><br>Keep trying!<br><br></div>
+		</div>
+	</div>
+
+	<div style="width:1070px"><table style="padding:0px 80px 0px 80px;" id="tablecontents">
+	</table>
+	<br>
+	<table><tr>
+		<td><button style="width:180px; font-size:35px; color:#333333; font-family:georgia;" onclick="window.location.href ='#popup2'">Rules</button></td>
+		<td style="width:10px;"></td>
+		<td><button style="width:180px; font-size:35px; color:#333333; font-family:georgia;" onclick="reset()">Reset</button></td>
+		<td style="width:10px;"></td>
+		<td><button style="width:280px; font-size:35px; color:#333333; font-family:georgia;" onclick="checkanswer()">Check Answer</button></td></tr></table>
+</div>
+
+</center></body>
+</html>
+
+<script type="text/javascript">
+var tablecolumns=18;
+var tablerows=10;
+var tablecontentsmarkup=" ";
+var maxwidth=900;
+var maxheight=900;
+var cellsize=Math.min(Math.floor(maxwidth/tablecolumns), Math.floor(maxheight/tablerows));
+var cellstate=[];
+for(var i=0; i<tablecolumns*tablerows; i++){cellstate[i]=0;}
+var answerstate=[];
+for(var i=0; i<tablecolumns*tablerows; i++){answerstate[i]=0;}
+answerstate[0]=1;
+answerstate[9]=1;
+answerstate[11]=1;
+answerstate[13]=1;
+answerstate[15]=1;
+answerstate[35]=1;
+answerstate[162]=1;
+answerstate[164]=1;
+answerstate[166]=1;
+answerstate[168]=1;
+answerstate[152]=1;
+answerstate[19]=1;
+answerstate[21]=1;
+answerstate[23]=1;
+answerstate[25]=1;
+answerstate[38]=1;
+answerstate[42]=1;
+answerstate[55]=1;
+answerstate[57]=1;
+answerstate[59]=1;
+answerstate[61]=1;
+answerstate[76]=1;
+answerstate[91]=1;
+answerstate[93]=1;
+answerstate[95]=1;
+answerstate[97]=1;
+answerstate[110]=1;
+answerstate[114]=1;
+answerstate[127]=1;
+answerstate[129]=1;
+answerstate[131]=1;
+answerstate[133]=1;
+answerstate[19+27]=1;
+answerstate[21+27]=1;
+answerstate[23+27]=1;
+answerstate[25+27]=1;
+answerstate[38+27]=1;
+answerstate[42+27]=1;
+answerstate[55+27]=1;
+answerstate[57+27]=1;
+answerstate[59+27]=1;
+answerstate[61+27]=1;
+answerstate[76+27]=1;
+answerstate[91+27]=1;
+answerstate[93+27]=1;
+answerstate[95+27]=1;
+answerstate[97+27]=1;
+answerstate[110+27]=1;
+answerstate[114+27]=1;
+answerstate[127+27]=1;
+answerstate[129+27]=1;
+answerstate[131+27]=1;
+answerstate[133+27]=1;
+for(var i=0; i<tablerows; i++){
+	tablecontentsmarkup=tablecontentsmarkup+"<tr>";
+	for(var j=0; j<tablecolumns; j++){
+		tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" id=\""+(i*tablecolumns+j)+"\" onclick=\"clicked("+(i*tablecolumns+j)+")\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"></td>";
+	}
+	tablecontentsmarkup=tablecontentsmarkup+"</tr>";
+}
+var notsolved=1;
+
+document.getElementById("tablecontents").innerHTML=tablecontentsmarkup;
+
+document.getElementById("0").innerHTML="2";
+document.getElementById("1").innerHTML="1";
+document.getElementById("19").innerHTML="21";
+document.getElementById("46").innerHTML="21";
+
+for(var i=0; i<18; i++){document.getElementById(i).style.borderTop="7px solid gray"; document.getElementById(179-i).style.borderBottom="7px solid gray";}
+for(var i=0; i<10; i++){document.getElementById(18*i).style.borderLeft="7px solid gray"; document.getElementById(18*i+17).style.borderRight="7px solid gray";}
+
+for(var i=19; i<35; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=46; i<53; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=145; i<152; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=163; i<179; i++){document.getElementById(i).style.borderTop="4px solid gray"; document.getElementById(i-18).style.borderBottom="4px solid gray";}
+
+for(var i=0; i<10; i++){document.getElementById(18*i).style.borderRight="4px solid gray"; document.getElementById(18*i+1).style.borderLeft="4px solid gray";}
+
+for(var i=1; i<9; i++){document.getElementById(18*i+7).style.borderRight="4px solid gray"; document.getElementById(18*i+8).style.borderLeft="4px solid gray";}
+
+for(var i=0; i<9; i++){document.getElementById(18*i+9).style.borderRight="4px solid gray"; document.getElementById(18*i+10).style.borderLeft="4px solid gray";}
+
+for(var i=0; i<10; i++){document.getElementById(18*i+16).style.borderRight="4px solid gray"; document.getElementById(18*i+17).style.borderLeft="4px solid gray";}
+
+function clicked(cell){
+	if(cellstate[cell]==0){document.getElementById(cell).style.backgroundColor="black"; cellstate[cell]=1;}
+	else{document.getElementById(cell).style.backgroundColor="white"; cellstate[cell]=0;}
+}
+
+function reset(){
+	for(var i=0; i<tablecolumns*tablerows; i++){cellstate[i]=0; document.getElementById(i).style.backgroundColor="white";}
+}
+
+function checkanswer(){
+	notsolved=0;
+	for(var i=0; i<tablecolumns*tablerows; i++){
+		if(cellstate[i]!=answerstate[i]){notsolved=1;}
+	}
+	if(notsolved==0){window.location.href ='#popup3';}
+	else{window.location.href ='#popup4';}
+}
+
+</script>
