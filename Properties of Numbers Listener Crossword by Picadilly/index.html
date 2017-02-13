@@ -10,6 +10,7 @@
 
 	<img src="PuzzleDarkCropped.png" style="position:absolute; top:0px; left:165px; height:793px">
 	<table id="tablecontents" style="opacity:0.8; position:absolute; left:750px"></table>
+	<button style="background-color:black; color:white; font-family:helvetica; font-size:25px; position:absolute; left:932px; top:560px;" onclick="location.search=cellstate.join('')+''+cellfilledout.join('');">Update URL</button>
 
 </center></body>
 </html>
@@ -26,22 +27,18 @@ var cellstate=[];
 var lastnumberclicked=0;
 var cellfilledout=[];
 var tempcontentsmarkup=" ";
+var inputfeed=location.search;
 
 function refreshtable(){
 	for(i=0; i<tablerows; i++){
 		tablecontentsmarkup=tablecontentsmarkup+"<tr>";
 		for(j=0; j<tablecolumns; j++){
 			cellfilledout[10*i+j]=0;
-			tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" onclick=\"resetcell("+(10*i+j)+")\" id=\"A"+(10*i+j)+"\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"><center><table style=\"padding:20px 0px 0px 0px;\">"
+			tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" onclick=\"resetcell("+(10*i+j)+")\" id=\"A"+(10*i+j)+"\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"><center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+(10*i+j)+")\" id=\"B"+(10*i+j)+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
 			for(k=0; k<2; k++){
 				tablecontentsmarkup=tablecontentsmarkup+"<tr>";
 				for(l=0; l<5; l++){
-					if(l==0 && k==0){
-						tablecontentsmarkup=tablecontentsmarkup+"<td class=\"clickcell\" onclick=\"fill("+(10*i+j)+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">F</td>";
-					}
-					else{
-						tablecontentsmarkup=tablecontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
-					}
+					tablecontentsmarkup=tablecontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
 					cellstate[cellid]=0;
 					cellid++;
 				}
@@ -62,23 +59,18 @@ function clicked(n){
 
 function fill(n){
 	document.getElementById("A"+n).innerHTML=lastnumberclicked;
-	setTimeout(function(){cellfilledout[n]=1},200);
+	setTimeout(function(){cellfilledout[n]=lastnumberclicked},10);
 }
 
 function resetcell(n){
-	if(cellfilledout[n]){
+	if(cellfilledout[n]!=0){
 		tempcontentsmarkup=" ";
-		tempcontentsmarkup="<center><table style=\"padding:20px 0px 0px 0px;\">"
+		tempcontentsmarkup="<center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+n+")\" id=\"B"+n+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
 		cellid=10*n;
 		for(k=0; k<2; k++){
 			tempcontentsmarkup=tempcontentsmarkup+"<tr>";
 			for(l=0; l<5; l++){
-				if(l==0 && k==0){
-					tempcontentsmarkup=tempcontentsmarkup+"<td class=\"clickcell\" onclick=\"fill("+n+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">F</td>";
-				}
-				else{
-					tempcontentsmarkup=tempcontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
-				}
+				tempcontentsmarkup=tempcontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
 				cellstate[cellid]=0;
 				cellid++;
 			}
@@ -92,5 +84,13 @@ function resetcell(n){
 }
 
 refreshtable();
+
+for(i=0; i<tablecolumns*tablerows*10; i++){
+	if(inputfeed[i+1]==1){clicked(i);}
+}
+
+for(i=tablecolumns*tablerows*10; i<tablecolumns*tablerows*11+1; i++){
+	if(inputfeed[i]!=0){lastnumberclicked=inputfeed[i]; fill(i-tablecolumns*tablerows*10-1);}
+}
 
 </script>
