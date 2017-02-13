@@ -1,0 +1,121 @@
+[1] is 729, the only three digit number that is both square AND cube. (In other words, it is the only three digit 6th power.)
+
+[12] must begin with "1", as it is a 4-digit number that is the sum of two 3-digit numbers.
+
+[8] and [27] are perfect cubes so their first digits must be in {1, 2, 3, 5, 7}, second digits in {1, 2, 4}, and third digits in {2, 3, 5, 6, 9}.
+
+[2] is prime. We already have 21x, and the only prime beginning 21x is 211.
+
+Prime numbers with more than one digit cannot end in {0, 2, 4, 5, 6, 8} so we may eliminate these from the final digits of [3], [5], [7], [11], [13], [17], [19], [23], [29], [31], [37], [41], [43], and [47].
+
+[7] is a factor of [21], both three digits, so [7] must begin {1, 2, 3, 4}.
+
+The same elimination applies for [8] factor of [48], and [11] factor of [44].
+
+[8] must end {3, 5, 6} as there are only three 3-digit cubes it could now be.
+
+[22] must end {2, 6, 4, 8} because of the way [11] ends.
+
+We can eliminate {1, 2, 3} from the start of [33], and {8} from the start of [31].
+
+We can eliminate 9 from the end of [11].
+
+Neither [24] nor [25] can begin with a 9, and [49] cannot begin with a 1.
+
+Similarly for [18], [23], and [41].
+
+Similarly for [6], [26], and [32].
+
+Similarly for [9], [18], and [27].
+
+So [42] cannot begin with 1.
+
+[9] cannot start with 4 (because [36] = [9] + [9] + [9] + [9]).
+
+And also therefore [36] cannot start with anything lower than 4.
+
+So [8] must be 125 or 216.
+
+[22] cannot start with 1.
+
+The second digit of [12] must be less than 3.
+
+[15] must start with 1.
+
+[5] must start with 4 or 5.
+
+The second digit of [22] must be 2 or 3.
+
+[9] must be 196 or 225, but if it were 225 then [36] would be 900 and a number would begin with 0.
+
+Therefore [9] is 196 and [36] is 784.
+
+[8] is 216.
+
+[7] must begin with 1.
+
+So [28] must begin {4, 5, 6, 7}.
+
+[28] must end {4, 6, 8}.
+
+[7] cannot end 3.
+
+[18] cannot begin with 1 or 7. It begins with 3.
+
+[27] begins with 5.
+
+[11] is 113 or 313.
+
+[22] is either 226 or 626.
+
+[33] must start with 8.
+
+The second digit of [31] cannot be 9.
+
+[33] must end {2, 4, 8}.
+
+[31] cannot end 9.
+
+The second digit of [12] must be less than 2.
+
+The last digit of [3] cannot be 3.
+
+The last digit of [7] is 7.
+
+The middle digit of [7] must be {2, 3, 5, 6, 9}.
+
+[27] is 512.
+
+[18] is 316.
+
+[4], [16], [25], and [49] must end {0, 1, 4, 5, 6, 9}
+
+[16] and [25] must start with 7 or less.
+
+[28] cannot begin with 4.
+
+[21] cannot begin with 1.
+
+The second digit of [5] cannot be 1, 5, or 8.
+
+[26] cannot begin with 8.
+
+[32] cannot end {3, 4, 5}.
+
+[7] is 127, 137, 157, 167, or 197.
+
+Therefore [28] is 508, 548, 628, 668, or 788.
+
+[3] must be 907, 911, or 919.
+
+[12] must be 1103, 1107, or 1115.
+
+[3] must be 911 or 919.
+
+[12] must be 1107 or 1115.
+
+[45] is 392, 588, 784, or 980.
+
+[45] is 392.
+
+Progress so far: file:///Volumes/Environment%20Setup/Code/Crosswords-and-Number-Puzzles/Properties%20of%20Numbers%20Listener%20Crossword%20by%20Picadilly/index.html?0000000100001000000000000000011000000000111100111111000100111110111111101111111111011111111111101111101011111101000000000111111111001111111111111010110000000000110010011000000000000000000001000000000011000000000100000000101111111000000000000000000000100000001110111111101011000110000000100000000000001111111011010000000010000010001011000110101011101011000000001101110111100000000100000000001010111011100000001110000000110000000000110011101111111000111000000000111011111100000000000000000000101011101010000000000000000000000000000011010111110101010101000000000011010111110000000001101011101100000000001111000110000000000000011100001110100110111101011110000000001101011101111111111000000000101000100000100000000010000000001010111010110000000011000000000000000000101011101010000000001111111111000000000010000000000000000000000000000000000000000000000000100000000000000000000000000000111111111110101110101000000000000000000000000000001110111010000000000000110001100000000000100000000000100000000000000000729XXX1216X11XXXXX9X11XXXX7X6X316XXXXXXXXXX5XX2XXXXXX1XX6XXXXXX28XX784XXXXXXXX3XXXXXXXXX9XXXXXXXXX2X

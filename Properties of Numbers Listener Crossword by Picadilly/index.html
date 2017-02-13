@@ -33,7 +33,7 @@ function refreshtable(){
 	for(i=0; i<tablerows; i++){
 		tablecontentsmarkup=tablecontentsmarkup+"<tr>";
 		for(j=0; j<tablecolumns; j++){
-			cellfilledout[10*i+j]=0;
+			cellfilledout[10*i+j]="X";
 			tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" onclick=\"resetcell("+(10*i+j)+")\" id=\"A"+(10*i+j)+"\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"><center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+(10*i+j)+")\" id=\"B"+(10*i+j)+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
 			for(k=0; k<2; k++){
 				tablecontentsmarkup=tablecontentsmarkup+"<tr>";
@@ -63,7 +63,7 @@ function fill(n){
 }
 
 function resetcell(n){
-	if(cellfilledout[n]!=0){
+	if(cellfilledout[n]!="X"){
 		tempcontentsmarkup=" ";
 		tempcontentsmarkup="<center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+n+")\" id=\"B"+n+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
 		cellid=10*n;
@@ -79,18 +79,23 @@ function resetcell(n){
 		tempcontentsmarkup=tempcontentsmarkup+"</center></table></td>";
 
 		document.getElementById("A"+n).innerHTML=tempcontentsmarkup;
-		cellfilledout[n]=0;
+		cellfilledout[n]="X";
 	}
 }
 
 refreshtable();
 
-for(i=0; i<tablecolumns*tablerows*10; i++){
-	if(inputfeed[i+1]==1){clicked(i);}
-}
+if(inputfeed.length==tablerows*tablecolumns*11+1){
+	for(i=0; i<tablecolumns*tablerows*10; i++){
+		if(inputfeed[i+1]==1){clicked(i);}
+	}
 
-for(i=tablecolumns*tablerows*10; i<tablecolumns*tablerows*11+1; i++){
-	if(inputfeed[i]!=0){lastnumberclicked=inputfeed[i]; fill(i-tablecolumns*tablerows*10-1);}
+	for(i=0; i<tablecolumns*tablerows; i++){
+		if(inputfeed[i+tablecolumns*tablerows*10+1]!="X"){
+			cellfilledout[i]=inputfeed[i+tablecolumns*tablerows*10+1];
+			document.getElementById("A"+i).innerHTML=cellfilledout[i];
+		}
+	}
 }
 
 </script>
