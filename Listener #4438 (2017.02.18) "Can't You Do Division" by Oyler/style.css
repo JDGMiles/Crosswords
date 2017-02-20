@@ -3,7 +3,9 @@ table {border-spacing: 0;}
 tr, td {margin: 0; padding: 0; border: 0; spacing: 0; font-size: 100%; font: inherit; vertical-align: baseline;}
 .gridcell {color:white; background-color: none; border:0px; box-sizing:border-box; border-color:none; font-size:40px; font-family:helvetica; text-align:center; vertical-align:middle;}
 
-.clickcell {color:white; background-color: none; border:0px; border-style:solid; box-sizing:border-box; border-color:gray; font-size:10px; font-family:Helvetica; text-align:center; vertical-align:middle;}
+.clickcell {color:white; background-color: none; border:0px; box-sizing:border-box; border-color:gray; font-size:10px; font-family:Helvetica; text-align:center; vertical-align:middle;}
+
+.togglecell {color:white; border:solid white 1px; width:40px; height:40px; text-align:center; vertical-align:middle; font-size:30px;}
 
 a:link {color:#CF0000; text-decoration: none;}
 a:link:hover {text-decoration:underline}
