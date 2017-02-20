@@ -1,0 +1,101 @@
+<!DOCTYPE html><html>
+
+<head>
+	<title>Working Grid</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body><center>
+
+	<img src="PuzzleDarkCropped.png" style="position:absolute; top:0px; left:165px; height:793px">
+	<table id="tablecontents" style="opacity:0.8; position:absolute; left:750px"></table>
+	<button style="background-color:black; color:white; font-family:helvetica; font-size:25px; position:absolute; left:932px; top:560px;" onclick="location.search=cellstate.join('')+''+cellfilledout.join('');">Update URL</button>
+
+</center></body>
+</html>
+
+<script type="text/javascript">
+var tablecolumns=10;
+var tablerows=10;
+var tablecontentsmarkup=" ";
+var maxwidth=520;
+var maxheight=700;
+var cellsize=Math.min(Math.floor(maxwidth/tablecolumns), Math.floor(maxheight/tablerows));
+var cellid=0;
+var cellstate=[];
+var lastnumberclicked=0;
+var cellfilledout=[];
+var tempcontentsmarkup=" ";
+var inputfeed=location.search;
+
+function refreshtable(){
+	for(i=0; i<tablerows; i++){
+		tablecontentsmarkup=tablecontentsmarkup+"<tr>";
+		for(j=0; j<tablecolumns; j++){
+			cellfilledout[10*i+j]="X";
+			tablecontentsmarkup=tablecontentsmarkup+"<td class=\"gridcell\" onclick=\"resetcell("+(10*i+j)+")\" id=\"A"+(10*i+j)+"\" style=\"width:"+cellsize+"px; height:"+cellsize+"px;\"><center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+(10*i+j)+")\" id=\"B"+(10*i+j)+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
+			for(k=0; k<2; k++){
+				tablecontentsmarkup=tablecontentsmarkup+"<tr>";
+				for(l=0; l<5; l++){
+					tablecontentsmarkup=tablecontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
+					cellstate[cellid]=0;
+					cellid++;
+				}
+				tablecontentsmarkup=tablecontentsmarkup+"</tr>";
+			}
+			tablecontentsmarkup=tablecontentsmarkup+"</center></table></td>";
+		}
+		tablecontentsmarkup=tablecontentsmarkup+"</tr>";
+	}
+	document.getElementById("tablecontents").innerHTML=tablecontentsmarkup;
+}
+
+
+function clicked(n){
+	if(cellstate[n]==0){document.getElementById(n).style.color="black"; cellstate[n]=1;}
+	else{document.getElementById(n).style.color="white"; cellstate[n]=0;}
+}
+
+function fill(n){
+	document.getElementById("A"+n).innerHTML=lastnumberclicked;
+	setTimeout(function(){cellfilledout[n]=lastnumberclicked},10);
+}
+
+function resetcell(n){
+	if(cellfilledout[n]!="X"){
+		tempcontentsmarkup=" ";
+		tempcontentsmarkup="<center><table style=\"padding:0px 0px 0px 0px;\"><tr><td class=\"clickcell\" onclick=\"fill("+n+")\" id=\"B"+n+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px; background-color:none; color:transparent;\">F</td></tr>";
+		cellid=10*n;
+		for(k=0; k<2; k++){
+			tempcontentsmarkup=tempcontentsmarkup+"<tr>";
+			for(l=0; l<5; l++){
+				tempcontentsmarkup=tempcontentsmarkup+"<td class=\"clickcell\" onclick=\"lastnumberclicked="+(5*k+l)+"; clicked("+cellid+")\" id=\""+cellid+"\" style=\"width:"+(cellsize/6)+"px; height:"+(cellsize/4)+"px;\">"+(5*k+l)+"</td>";
+				cellstate[cellid]=0;
+				cellid++;
+			}
+			tempcontentsmarkup=tempcontentsmarkup+"</tr>";
+		}
+		tempcontentsmarkup=tempcontentsmarkup+"</center></table></td>";
+
+		document.getElementById("A"+n).innerHTML=tempcontentsmarkup;
+		cellfilledout[n]="X";
+	}
+}
+
+refreshtable();
+
+if(inputfeed.length==tablerows*tablecolumns*11+1){
+	for(i=0; i<tablecolumns*tablerows*10; i++){
+		if(inputfeed[i+1]==1){clicked(i);}
+	}
+
+	for(i=0; i<tablecolumns*tablerows; i++){
+		if(inputfeed[i+tablecolumns*tablerows*10+1]!="X"){
+			cellfilledout[i]=inputfeed[i+tablecolumns*tablerows*10+1];
+			document.getElementById("A"+i).innerHTML=cellfilledout[i];
+		}
+	}
+}
+
+</script>
